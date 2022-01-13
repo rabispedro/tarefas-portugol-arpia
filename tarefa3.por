@@ -17,34 +17,35 @@ programa {
                     * Fibonacci(0) = 0
                     * Fibonacci(1) = 1
                     * Fibonacci(2) = Fibonacci(1) + Fibonacci(0)
+                    * Fibonacci(1) = 1
+                    * Fibonacci(0) = 0
     */
     
-    inteiro aux[100]
+    inteiro sequenciaFibonacci[200]
     
-    funcao inicio() {
-        aux[0] = 0
-        aux[1] = 1
-        
-        inteiro numeroTermos
+	funcao inicio() {
+	    inteiro numeroTermos
         
         escreva("Digite a quantidade de números: ")
         leia(numeroTermos)
         
+        fibonacciIterativo(numeroTermos)
+        
         escreva("Número de termos: ", numeroTermos, "\n")
         
-        escreva("Termos Calculados(Recursivo): ")
+        escreva("Termos Calculados (Iterativo): ")
         para(inteiro i=0; i<numeroTermos; i++){
-            escreva(fibonacciRecursivo(i), " ")
+            escreva(sequenciaFibonacci[i], " ")
         }
         
         escreva("\n")
         
-        escreva("Termos Calculados (Iterativo): ")
+        escreva("Termos Calculados (Recursivo): ")
         para(inteiro i=0; i<numeroTermos; i++){
-            escreva(fibonacciIterativo(i), " ")
+            escreva(fibonacciRecursivo(i), " ")
         }
-    }
-    
+	}
+	
     funcao inteiro fibonacciRecursivo(inteiro n) {
         se(n == 0){
             retorne 0
@@ -56,16 +57,13 @@ programa {
         
         retorne (fibonacciRecursivo(n-1) + fibonacciRecursivo(n-2))
     }
-    
-    funcao inteiro fibonacciIterativo(inteiro n) {
-        // se(n < 0) {
-        //     retorne -1
-        // }
-    
-        para(inteiro i=2; i<n; i++) {
-            aux[i] = aux[i-1] + aux[i-2]
-        }
+	
+	funcao vazio fibonacciIterativo(inteiro qtd) {
+        sequenciaFibonacci[0] = 0
+        sequenciaFibonacci[1] = 1
         
-        retorne aux[n]
-    }
+        para(inteiro i=2; i<=qtd; i++){
+            sequenciaFibonacci[i] = sequenciaFibonacci[i-1] + sequenciaFibonacci[i-2]
+        }
+	}
 }
